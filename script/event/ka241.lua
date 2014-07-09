@@ -10,7 +10,7 @@
 		listA[k]['id']=v
 		listA[k]['name']=GetNameAsString(1,v)
 		listA[k]['amount']=haveitemamount(v)
-		listA['display'][k]=string.format('%-10s%10s',listA[k]['name'],listA[k]['amount'])
+		listA['display'][k]=string.format('%-10s%6s',listA[k]['name'],listA[k]['amount'])
 	end
 		
 	for k,v in pairs(list2) do
@@ -18,7 +18,7 @@
 		listB[k]['id']=v
 		listB[k]['name']=GetNameAsString(1,v)
 		listB[k]['amount']=haveitemamount(v)
-		listB['display'][k]=string.format('%-10s%10s',listB[k]['name'],listB[k]['amount'])
+		listB['display'][k]=string.format('%-10s%6s',listB[k]['name'],listB[k]['amount'])
 	end
 
 	Talk(personID, personSay, -2, 1, 0, 0);
@@ -28,7 +28,7 @@
 	selectA=menu(#list1, 160, 210, 100,listA['display']);
 	if(selectA==-1)then exit();end
 	if(listA[selectA+1]['amount']<=0)then
-		Talk(personID, "你没有该材料！", -2, 1, 0, 0);
+		Talk(personID, "不要開玩笑！", -2, 1, 0, 0);
 		exit();
 	end
 	
@@ -36,7 +36,7 @@
 	selectB=menu(#list2,390,210,100,listB['display'])
 	if(selectB==-1)then exit();end
 	if(listB[selectB+1]['amount']<=0)then
-		Talk(personID, "你没有该材料！", -2, 1, 0, 0);
+		Talk(personID, "不要開另一個玩笑！", -2, 1, 0, 0);
 		exit();
 	end
 
