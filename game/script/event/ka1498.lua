@@ -247,7 +247,7 @@ exit();
 ::label3::
                 LightScence();
                 SetAttribute(294, 0, -9, 0, 0);
-                Talk(294, "崑崙何太沖與少俠切磋一二。", -2, 1, 0, 0);
+                Talk(294, "崑崙何太冲與少俠切磋一二。", -2, 1, 0, 0);
                 if TryBattle(235) == true then goto label4 end;
                     Dead();
 exit();

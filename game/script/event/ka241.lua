@@ -44,7 +44,7 @@
 	idB=listB[selectB+1]['id']
 	idC=list3[string.format('%s+%s',idA,idB)]
 	if(idC==nil)then
-		Talk(personID, "合成失败！", -2, 1, 0, 0);
+		Talk(personID, "合成失敗！", -2, 1, 0, 0);
 		exit();
 	end
 	additem(idA,-1);
