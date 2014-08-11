@@ -7,11 +7,9 @@ personSay="果子雖然好吃，卻不如拿來與水混合釀造美酒，更加
 list1={220,221,222};
 list2={209,210};
 list3={
-	[string.format('%d+%d',220,209)]=19,
-	[string.format('%d+%d',220,210)]=19,
-	[string.format('%d+%d',221,209)]=20,
-	[string.format('%d+%d',221,210)]=20,
-	[string.format('%d+%d',222,209)]=21,
+	[string.format('%d+%d',220,210)]=22,
+	[string.format('%d+%d',221,209)]=19,
+	[string.format('%d+%d',222,209)]=20,
 	[string.format('%d+%d',222,210)]=21,
 };
 execevent(241);

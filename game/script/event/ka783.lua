@@ -1,24 +1,20 @@
---王難姑 花草 水 解藥
+--王难姑 花草 材料 暗器
 clear();
 itemA='花草';
-itemB='水';
+itemB='材料';
 personID=86;
-personSay="有花草和水的話，我可以幫你製作解藥。";
-list1={214,215,216,217,218,219};
-list2={209,210};
+personSay="有花草和材料的話，我可以幫你製作暗器。";
+list1={215,216,218,219};
+list2={211,212};
 list3={
-	[string.format('%d+%d',214,209)]=10,
-	[string.format('%d+%d',214,210)]=10,
-	[string.format('%d+%d',215,209)]=10,
-	[string.format('%d+%d',215,210)]=10,
-	[string.format('%d+%d',216,209)]=11,
-	[string.format('%d+%d',216,210)]=11,
-	[string.format('%d+%d',217,209)]=11,
-	[string.format('%d+%d',217,210)]=11,
-	[string.format('%d+%d',218,209)]=12,
-	[string.format('%d+%d',218,210)]=12,
-	[string.format('%d+%d',219,209)]=12,
-	[string.format('%d+%d',219,210)]=12,
+	[string.format('%d+%d',215,211)]=189,
+	[string.format('%d+%d',215,212)]=196,
+	[string.format('%d+%d',216,211)]=190,
+	[string.format('%d+%d',216,212)]=197,
+	[string.format('%d+%d',218,211)]=192,
+	[string.format('%d+%d',219,211)]=193,
+	[string.format('%d+%d',219,212)]=202,
+	
 };
 execevent(241);
 exit();
