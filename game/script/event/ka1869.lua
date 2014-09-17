@@ -1,11 +1,15 @@
 DarkScence();
 setshowmainrole(0);
 ChangeScence(108,31,9);
+a=getscenceeventpro(15,29,5);
+b=getscenceeventpro(15,28,5);
+PutScenceEventPro(0,15,29,5);
+PutScenceEventPro(0,15,28,5);
 setscencemappro(3536*2,108,1,8,31);
 setscencemappro(3539*2,108,1,8,30);
 setscencemappro(3675*2,108,1,10,29);
 LightScence();
-ShowTitle("第三幕", 1);
+ShowTitle("戰三鬼", 1);
 Talk(72, "玉...玉兒？你怎麼跑襄陽城來了？", -2, 0, 0, 0);
 Talk(0, "爹，娘，家裡出事了，陸伯和一眾家丁都被賊人給殺了，那神馬黃河死鬼的說要為兄弟報仇便趁爹娘不在時到歸雲莊殺人，幸好陸伯拼死拖延他們，孩兒才得以保存性命來到這找你們報信啊！！！爹，娘，你們一定要為陸伯報仇啊！！！！", "陸二少", 1, 1, 0);
 Talk(72, "你說什麼？陸伯他...他！混帳！", -2, 0, 0, 0);
@@ -42,6 +46,10 @@ if TryBattle(301) == true then
 	Talk(73, "夫君，窮寇莫追，以防有詐。", -2, 1, 0, 0);
 	Talk(72, "哼，這筆賬，終要向他們討回。", -2, 0, 0, 0);
 	DarkScence();
+	PutScenceEventPro(a,15,29,5);
+    PutScenceEventPro(b,15,28,5);
+	PutScenceMapPro(0,15,1,7,25);
+    PutScenceMapPro(0,15,1,7,27);
 	PutScenceMapPro(0,15,1,14,26);
 	PutScenceMapPro(0,15,1,14,27);
 	PutScenceMapPro(0,15,1,14,28);

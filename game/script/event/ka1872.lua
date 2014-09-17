@@ -1,12 +1,33 @@
 DarkScence();
+a=getscenceeventpro(15,29,5);--这四条先把原来大厅里的陆程两人重置。
+b=getscenceeventpro(15,28,5);
+PutScenceEventPro(0,15,29,5);
+PutScenceEventPro(0,15,28,5);
 PutScenceMapPro(4157*2,15,1,5,26);
 PutScenceMapPro(4158*2,15,1,5,27);
 PutScenceMapPro(4156*2,15,1,5,25);
 PutScenceMapPro(3537*2,15,1,7,25);
 PutScenceMapPro(3538*2,15,1,8,25);
+c=getscencemappro(29,1,23,28);--如果在南部隘口攻破之后玩此列传，则重新把五毒教众贴图放上去。
+if c<=0 then
+	PutScenceMapPro(3398*2,29,1,33,32);
+	PutScenceMapPro(3398*2,29,1,33,30);
+	PutScenceMapPro(3398*2,29,1,30,35);
+	PutScenceMapPro(3398*2,29,1,30,33);
+	PutScenceMapPro(3398*2,29,1,30,31);
+	PutScenceMapPro(3398*2,29,1,30,29);
+	PutScenceMapPro(3398*2,29,1,30,27);
+	PutScenceMapPro(3398*2,29,1,27,26);
+	PutScenceMapPro(3398*2,29,1,27,34);
+	PutScenceMapPro(3398*2,29,1,32,31);
+	PutScenceMapPro(4160*2,29,1,27,32);
+	PutScenceMapPro(4161*2,29,1,27,28);
+	PutScenceMapPro(4162*2,29,1,27,30);
+end
 setshowmainrole(0);
 LightScence();
 ScencefromTo(18,8,7,25);
+ShowTitle("突擊南部隘口", 1);
 Talk(47, "冠英，瑤迦，你們回來有些日子了，襄陽那邊？", -2, 1, 0, 0);
 Talk(72, "爹，襄陽有郭兄夫婦鎮守，沒那麼容易被韃子攻下的。", -2, 0, 0, 0);
 Talk(47, "話雖如此，但我總覺得黃河三鬼這次來得太巧了一些，好像是專程把你們引回來一樣。", -2, 1, 0, 0);
@@ -68,13 +89,30 @@ else
 		Talk(73, "冠英，他們人多勢眾，不宜硬拼。", -2, 0, 0, 0);
 		Talk(72, "哼，邪魔小丑，容你們得意一時，早晚和你們算這筆賬。", -2, 0, 0, 0);
 		DarkScence();
+		if c<=0 then
+			PutScenceMapPro(0,29,1,33,32);
+			PutScenceMapPro(0,29,1,33,30);
+			PutScenceMapPro(0,29,1,30,35);
+			PutScenceMapPro(0,29,1,30,33);
+			PutScenceMapPro(0,29,1,30,31);
+			PutScenceMapPro(0,29,1,30,29);
+			PutScenceMapPro(0,29,1,30,27);
+			PutScenceMapPro(0,29,1,27,26);
+			PutScenceMapPro(0,29,1,27,34);
+			PutScenceMapPro(0,29,1,32,31);
+			PutScenceMapPro(0,29,1,27,32);
+			PutScenceMapPro(0,29,1,27,28);
+			PutScenceMapPro(0,29,1,27,30);
+		end
+		PutScenceEventPro(a,15,29,5);
+		PutScenceEventPro(b,15,28,5);
 		PutScenceMapPro(0,15,1,5,26);
 		PutScenceMapPro(0,15,1,5,27);
 		PutScenceMapPro(0,15,1,5,25);
 		PutScenceMapPro(0,15,1,7,25);
 		PutScenceMapPro(0,15,1,8,25);
 		PutScenceMapPro(0,29,1,34,28);
-        PutScenceMapPro(0,29,1,35,28);
+		PutScenceMapPro(0,29,1,35,28);
 		changescence(15,8,18)
 		setshowmainrole(1);
 		LightScence();

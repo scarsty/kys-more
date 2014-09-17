@@ -1,6 +1,10 @@
 DarkScence();
 SetScreenBlendMode(1);
 setshowmainrole(0);
+a=getscenceeventpro(15,29,5);
+b=getscenceeventpro(15,28,5);
+PutScenceEventPro(0,15,29,5);
+PutScenceEventPro(0,15,28,5);
 PutScenceMapPro(3536*2,15,1,7,25);
 PutScenceMapPro(4157*2,15,1,5,26);
 PutScenceMapPro(4158*2,15,1,5,27);
@@ -14,7 +18,7 @@ PutScenceMapPro(4428*2,15,1,12,24);
 PutScenceMapPro(5157*2,15,1,8,27);
 LightScence();
 ScenceFromTo(18,8,7,25);
-ShowTitle("第二幕", 1);
+ShowTitle("戰楊康", 1);
 Talk(453, "賊強盜，你們行使詭計，鑿沉船隻，也不怕江湖上好漢笑話？", "完顏康", 1, 0, 0);
 Talk(72, "哈，你是金國王子，跟我們綠林豪傑提什麼‘江湖’二字？", -2, 0, 0, 0);
 Talk(453, "我在京城時久聞江南豪客的大名，只道當真都是光明磊落的好男子，哼哼，今日一見，卻原來……嘿嘿，可就叫作浪得虛名！", "完顏康", 1, 0, 0);
@@ -76,6 +80,8 @@ if TryBattle(300) == false then
 	Putrolepro(11,72,25);
 	ShowTitle("陸冠英領悟絕招：陸家刀法", 1);
 	DarkScence();
+	PutScenceEventPro(a,15,29,5);
+    PutScenceEventPro(b,15,28,5);
 	PutScenceMapPro(0,15,1,7,25);
 	PutScenceMapPro(0,15,1,5,26);
 	PutScenceMapPro(0,15,1,5,27);
@@ -118,6 +124,8 @@ else
 	Talk(47, "這金狗的師承來歷，得好好問他一問。", -2, 0, 0, 0);
 	Talk(72, "是。", -2, 0, 0, 0);
 	DarkScence();
+	PutScenceEventPro(a,15,29,5);
+    PutScenceEventPro(b,15,28,5);
 	PutScenceMapPro(0,15,1,7,25);
 	PutScenceMapPro(0,15,1,5,26);
 	PutScenceMapPro(0,15,1,5,27);
