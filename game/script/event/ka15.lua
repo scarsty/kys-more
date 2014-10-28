@@ -4,7 +4,7 @@ if CheckJumpFlag() == true then goto label0 end;
     exit();
 ::label0::
     Leave(8);
-    ModifyEvent(16, 14, 1, 0, 708, 0, -2, 5722, 5722, 5722, 0, -2, -2);
+    ModifyEvent(16, 14, 1, 0, 708, 0, -2, 5722, 5748, 5722, 77, -2, -2);
     instruct_50(43, 0, 209, 3, 1, 0, 0);
     instruct_50(43, 0, 232, 8, 161, 0, 0);
     instruct_50(43, 0, 232, 14, 161, 0, 0);
