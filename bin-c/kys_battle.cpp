@@ -114,7 +114,7 @@ bool Battle(int battlenum, int getexp, int forceSingle)
             Brole[i].AutoMode = 0;
         // 战场状态和情侣加成清空
         for (int j = 0; j < 10; j++)
-            Brole[i].loverlevel[j] = 0;
+            Brole[i].LoverLevel[j] = 0;
         for (int k = 0; k < 34; k++)
             Brole[i].StateLevel[k] = 0;
     }
@@ -427,9 +427,11 @@ void BattleMainControl()
             By = Brole[m].Y;
             Redraw();
             NewTalk(LoverList[k][0], LoverList[k][4] + 1, -2, 1, 0, 28515, 0);
-            Brole[m].loverlevel[LoverList[k][2]] = LoverList[k][3];
-            if (LoverList[k][2] != 6) // 替代伤害为单向
-                Brole[n].loverlevel[LoverList[k][2]] = LoverList[k][3];
+            Brole[m].LoverLevel[LoverList[k][2]] = LoverList[k][3];
+            if (LoverList[k][2] == 6)
+                Brole[n].LoverLevel[6] = LoverList[k][0];
+            else
+                Brole[n].LoverLevel[LoverList[k][2]] = LoverList[k][3];
         }
     }
 
@@ -668,7 +670,7 @@ void BattleMainControl()
                                         if (Brole[bnum].Team != Brole[i].Team)
                                         {
                                             int pnum = Rmagic[neinum].AddMP[0] + (Rmagic[neinum].AddMP[1] - Rmagic[neinum].AddMP[0]) * neilevel / 10;
-                                            if (pnum > Rrole[Brole[bnum].rnum].DefPoi + Brole[bnum].loverlevel[3])
+                                            if (pnum > Rrole[Brole[bnum].rnum].DefPoi + Brole[bnum].LoverLevel[3])
                                             {
                                                 Rrole[Brole[bnum].rnum].Poison = Rrole[Brole[bnum].rnum].Poison + pnum;
                                                 ShowStringOnBrole(std::string((char*)&Rmagic[neinum].Name[0]) + "·群毒", i, 2);
@@ -778,7 +780,7 @@ int CalBroleMoveAbility(int bnum)
     int result = step / 10;
     if (result > 15)
         result = 15;
-    result = result + Brole[bnum].StateLevel[3] + Brole[bnum].loverlevel[2];
+    result = result + Brole[bnum].StateLevel[3] + Brole[bnum].LoverLevel[2];
     for (int equip : Rrole[rnum].Equip)
     {
         if (equip >= 0 && equip < 1000)
@@ -812,7 +814,7 @@ void ReArrangeBRole()
     auto calTotalSpeed = [](int bnum) -> int {
         int rnum = Brole[bnum].rnum;
         int spd = Rrole[rnum].Speed + Ritem[Rrole[rnum].Equip[0]].AddSpeed + Ritem[Rrole[rnum].Equip[1]].AddSpeed;
-        spd = spd * (100 + Brole[bnum].StateLevel[2] + Brole[bnum].loverlevel[9]) / 100;
+        spd = spd * (100 + Brole[bnum].StateLevel[2] + Brole[bnum].LoverLevel[9]) / 100;
         return spd;
     };
     for (int i1 = 0; i1 < BRoleAmount - 1; i1++)
@@ -2335,7 +2337,7 @@ void CalHurtRole(int bnum, int mnum, int level, int mode)
                 }
 
                 // 情侣替代受伤
-                int loverBnum = Brole[i].loverlevel[6] > 0 ? getBnum(Brole[i].loverlevel[6]) : -1;
+                int loverBnum = Brole[i].LoverLevel[6] > 0 ? getBnum(Brole[i].LoverLevel[6]) : -1;
                 if (loverBnum >= 0 && Brole[loverBnum].Dead == 0)
                 {
                     Brole[loverBnum].ShowNumber = hurt;
@@ -2431,13 +2433,13 @@ void CalHurtRole(int bnum, int mnum, int level, int mode)
                 if (Rrole[rnum].CurrentMP > Rrole[rnum].MaxMP) Rrole[rnum].CurrentMP = Rrole[rnum].MaxMP;
             }
             // 中毒
-            int addpoi = Rrole[rnum].AttPoi / 5 + Rmagic[mnum].Poison * level / 2 - Rrole[Brole[i].rnum].DefPoi - Brole[i].loverlevel[3];
+            int addpoi = Rrole[rnum].AttPoi / 5 + Rmagic[mnum].Poison * level / 2 - Rrole[Brole[i].rnum].DefPoi - Brole[i].LoverLevel[3];
             if (Rmagic[mnum].AttAreaType == 6 && Brole[bnum].StateLevel[11] > 0)
                 addpoi += Brole[bnum].StateLevel[11];
             if (addpoi + Rrole[Brole[i].rnum].Poison > 99)
                 addpoi = 99 - Rrole[Brole[i].rnum].Poison;
             if (addpoi < 0) addpoi = 0;
-            if (Rrole[Brole[i].rnum].DefPoi + Brole[i].loverlevel[3] >= 99) addpoi = 0;
+            if (Rrole[Brole[i].rnum].DefPoi + Brole[i].LoverLevel[3] >= 99) addpoi = 0;
             Rrole[Brole[i].rnum].Poison += addpoi;
         }
     }
@@ -2451,8 +2453,8 @@ int CalHurtValue(int bnum1, int bnum2, int mnum, int level, int mode)
     auto& B1 = Brole[bnum1];
     auto& B2 = Brole[bnum2];
 
-    int R1Att = std::max(0, R1.Attack * (100 + B1.StateLevel[0] + B1.loverlevel[0]) / 100);
-    int R2Def = std::max(0, R2.Defence * (100 + B2.StateLevel[1] + B2.loverlevel[1]) / 100);
+    int R1Att = std::max(0, R1.Attack * (100 + B1.StateLevel[0] + B1.LoverLevel[0]) / 100);
+    int R2Def = std::max(0, R2.Defence * (100 + B2.StateLevel[1] + B2.LoverLevel[1]) / 100);
 
     // 武器增加攻击
     if (R1.Equip[0] >= 0)
@@ -2517,7 +2519,7 @@ int CalHurtValue(int bnum1, int bnum2, int mnum, int level, int mode)
     mhurt = (int)(mhurt * p * p2 * p3 * p4);
 
     // 情侣技加成
-    if (B1.loverlevel[4] > 0) mhurt = mhurt * (100 + B1.loverlevel[4]) / 100;
+    if (B1.LoverLevel[4] > 0) mhurt = mhurt * (100 + B1.LoverLevel[4]) / 100;
 
     // 轻功加成
     if (Rmagic[mnum].Attack[3] > 0)
@@ -2536,7 +2538,7 @@ int CalHurtValue(int bnum1, int bnum2, int mnum, int level, int mode)
     // 内力加成
     if (Rmagic[mnum].Attack[2] > 0)
     {
-        double mp = (R1.MaxMP * (Rmagic[mnum].Attack[2] + B1.loverlevel[5]) / 100.0 / 9999.0) + 1;
+        double mp = (R1.MaxMP * (Rmagic[mnum].Attack[2] + B1.LoverLevel[5]) / 100.0 / 9999.0) + 1;
         for (int i = 0; i < 4; i++)
         {
             int neinum = R1.NeiGong[i];
@@ -2587,8 +2589,8 @@ int CalHurtValue(int bnum1, int bnum2, int mnum, int level, int mode)
     result = result * (100 - (dis - 1) * 3) / 100;
 
     // 轻功闪避
-    int speed1 = R1.Speed * (100 + B1.StateLevel[2] + B1.loverlevel[9]) / 100;
-    int speed2 = R2.Speed * (100 + B2.StateLevel[2] + B2.loverlevel[9]) / 100;
+    int speed1 = R1.Speed * (100 + B1.StateLevel[2] + B1.LoverLevel[9]) / 100;
+    int speed2 = R2.Speed * (100 + B2.StateLevel[2] + B2.LoverLevel[9]) / 100;
     if (speed2 >= speed1)
     {
         double sp = 1 - ((speed2 - speed1) / 360.0);
@@ -3127,7 +3129,7 @@ void UsePoison(int bnum)
         {
             if (Brole[i].Dead == 0 && Brole[i].Team != Brole[bnum].Team)
             {
-                int effectiveDefPoi = Rrole[Brole[i].rnum].DefPoi + Brole[i].loverlevel[3];
+                int effectiveDefPoi = Rrole[Brole[i].rnum].DefPoi + Brole[i].LoverLevel[3];
                 if (effectiveDefPoi <= minDefPoi && Rrole[Brole[i].rnum].Poison < 99 && BField[3][Brole[i].X][Brole[i].Y] >= 0)
                 {
                     minDefPoi = effectiveDefPoi;
@@ -3146,7 +3148,7 @@ void UsePoison(int bnum)
         if (Brole[bnum1].Team != Brole[bnum].Team)
         {
             int rnum1 = Brole[bnum1].rnum;
-            int addpoi = Rrole[rnum].UsePoi / 3 - (Rrole[rnum1].DefPoi + Brole[bnum1].loverlevel[3]) / 4;
+            int addpoi = Rrole[rnum].UsePoi / 3 - (Rrole[rnum1].DefPoi + Brole[bnum1].LoverLevel[3]) / 4;
             addpoi = std::max(addpoi, 0);
 
             // 反伤
@@ -3367,7 +3369,7 @@ void UseHiddenWeapon(int bnum, int inum)
                 if (Brole[bnum1].Team != Brole[bnum].Team)
                 {
                     int rnum1 = Brole[bnum1].rnum;
-                    int poisonResistance = std::min(100, Rrole[rnum1].DefPoi + Brole[bnum1].loverlevel[3]);
+                    int poisonResistance = std::min(100, Rrole[rnum1].DefPoi + Brole[bnum1].LoverLevel[3]);
                     int addedPoison = Ritem[inum].AddPoi * (100 - poisonResistance) / 100;
                     Rrole[rnum1].Poison = std::clamp((int)Rrole[rnum1].Poison + addedPoison, 0, 99);
                     SetAnimationPosition(0, 0, 0);
@@ -4087,13 +4089,13 @@ void RoundOver(int bnum)
         // 情侣和状态恢复生命
         int rnum = Brole[bnum].rnum;
         Rrole[rnum].CurrentHP = Rrole[rnum].CurrentHP + Rrole[rnum].MaxHP * Brole[bnum].StateLevel[5] / 100;
-        Rrole[rnum].CurrentHP = Rrole[rnum].CurrentHP + Rrole[rnum].MaxHP * Brole[bnum].loverlevel[7] / 100;
+        Rrole[rnum].CurrentHP = Rrole[rnum].CurrentHP + Rrole[rnum].MaxHP * Brole[bnum].LoverLevel[7] / 100;
         if (Rrole[rnum].CurrentHP > Rrole[rnum].MaxHP)
             Rrole[rnum].CurrentHP = Rrole[rnum].MaxHP;
 
         // 情侣和状态恢复内力
         Rrole[rnum].CurrentMP = Rrole[rnum].CurrentMP + Rrole[rnum].MaxMP * Brole[bnum].StateLevel[6] / 100;
-        Rrole[rnum].CurrentMP = Rrole[rnum].CurrentMP + Rrole[rnum].MaxMP * Brole[bnum].loverlevel[8] / 100;
+        Rrole[rnum].CurrentMP = Rrole[rnum].CurrentMP + Rrole[rnum].MaxMP * Brole[bnum].LoverLevel[8] / 100;
         if (Rrole[rnum].CurrentMP < 0)
             Rrole[rnum].CurrentMP = 0;
         if (Rrole[rnum].CurrentMP > Rrole[rnum].MaxMP)
@@ -5169,7 +5171,7 @@ void TSpecialAbility::SA_13(int bnum, int mnum, int level)
     {
         if (Brole[i].Team != Brole[bnum].Team && Brole[i].Dead == 0)
         {
-            int curenum = Value + rand() % 3 - Rrole[Brole[i].rnum].DefPoi - Brole[i].loverlevel[3];
+            int curenum = Value + rand() % 3 - Rrole[Brole[i].rnum].DefPoi - Brole[i].LoverLevel[3];
             curenum = std::max(0, curenum);
             Rrole[Brole[i].rnum].Poison += curenum;
             Brole[i].ShowNumber = curenum;

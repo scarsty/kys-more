@@ -217,7 +217,7 @@ struct TBattleRole
         {
             int rnum, Team, Y, X, Face, Dead, Step, Acted;
             int Pic, ShowNumber, AntiHurt, AutoMode, PreTeam, ExpGot, Auto, Moved;
-            int loverlevel[10];
+            int LoverLevel[10];
             int StateLevel[34], StateRound[34];
             int RealSpeed, RealProgress, BHead;
             int StaticPic[4];

@@ -5319,10 +5319,10 @@ void ShowStatus(int rnum, int bnum)
         addnum[1] += Brole[bnum].StateLevel[1] * Rrole[rnum].Defence / 100;
         addnum[2] += Brole[bnum].StateLevel[2] * Rrole[rnum].Speed / 100;
         addnum[3] += Brole[bnum].StateLevel[3] * 10;
-        addnum[0] += Brole[bnum].loverlevel[0] * Rrole[rnum].Attack / 100;
-        addnum[1] += Brole[bnum].loverlevel[1] * Rrole[rnum].Defence / 100;
-        addnum[2] += Brole[bnum].loverlevel[9] * Rrole[rnum].Speed / 100;
-        addnum[3] += Brole[bnum].loverlevel[2] * 10;
+        addnum[0] += Brole[bnum].LoverLevel[0] * Rrole[rnum].Attack / 100;
+        addnum[1] += Brole[bnum].LoverLevel[1] * Rrole[rnum].Defence / 100;
+        addnum[2] += Brole[bnum].LoverLevel[9] * Rrole[rnum].Speed / 100;
+        addnum[3] += Brole[bnum].LoverLevel[2] * 10;
     }
 
     for (int i = 6; i <= 17; i++)
@@ -5418,9 +5418,9 @@ void ShowStatus(int rnum, int bnum)
         int k = 0;
         for (int i = 0; i < (int)loverstrs.size(); i++)
         {
-            if (Brole[bnum].loverlevel[i] != 0 && !loverstrs[i].empty())
+            if (Brole[bnum].LoverLevel[i] != 0 && !loverstrs[i].empty())
             {
-                if (Brole[bnum].loverlevel[i] > 0)
+                if (Brole[bnum].LoverLevel[i] > 0)
                 {
                     color1 = 0xfd6c9e;
                     color2 = 0xff69b4;
