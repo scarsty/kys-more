@@ -6014,7 +6014,7 @@ void MenuSystem()
     DrawTitleMenu(3);
     TFreshScreenGuard freshScreen;
 
-    std::string menuString[6] = { "讀檔", "存檔", "設置", "製作", "特殊", "離開" };
+    std::string menuString[6] = { "讀檔", "存檔", "設置", "關於", "功能", "離開" };
 
     int menu = 0, pmenu = -1;
     event.key.key = 0;
