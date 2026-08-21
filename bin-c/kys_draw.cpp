@@ -1,4 +1,4 @@
-// kys_draw.cpp - 绘制实现
+﻿// kys_draw.cpp - 绘制实现
 // 对应 kys_draw.pas
 
 #include "kys_draw.h"

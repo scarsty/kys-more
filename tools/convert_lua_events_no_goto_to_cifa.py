@@ -475,7 +475,7 @@ def convert_ka231() -> str:
     return """SetX50(9000, 124);
 SetX50(9001, GetX50(28928));
 SetX50(9002, GetX50(28929));
-SetX50(9003, GetX50(28930) + 1);
+SetX50(9003, GetX50(28930) - 1);
 SetX50(9003, GetX50(9003) * 100);
 do {
     SetX50(9000, GetX50(9000) + 2);
@@ -1242,8 +1242,8 @@ do {
         if (GetX50(30) != 0) {
             SetX50(6, GetItemAmount(GetX50(5)));
             if (GetX50(6) != 0) {
-                SetX50(30, GetX50(30) * 10);
-                SetX50(30, GetX50(30) / 7);
+                SetX50(30, GetX50(30) / 10);
+                SetX50(30, GetX50(30) * 7);
                 ka212_build_line(GetX50(0), GetX50(5), GetX50(30), GetX50(6));
                 SetX50(0, GetX50(0) + 1);
             }
@@ -1273,8 +1273,8 @@ do {
                     talk(90, "輸入錯誤。", -2, 0, 0, 0);
                 } else {
                     SetX50(30, GetItem(GetX50(28927), 10));
-                    SetX50(30, GetX50(30) * 10);
-                    SetX50(30, GetX50(30) / 7);
+                    SetX50(30, GetX50(30) / 10);
+                    SetX50(30, GetX50(30) * 7);
                     SetX50(30, GetX50(30) * GetX50(10032));
                     SetX50(31, GetItemAmount(0));
                     SetX50(31, GetX50(31) + GetX50(30));

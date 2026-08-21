@@ -1,4 +1,4 @@
-// kys_cifa.cpp - Cifa script interface
+﻿// kys_cifa.cpp - Cifa script interface
 
 #include "kys_cifa.h"
 #include "kys_battle.h"

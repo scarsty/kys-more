@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 // kys_cifa.h - Cifa script interface
 
 #include "kys_type.h"

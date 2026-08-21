@@ -1667,6 +1667,11 @@ void Attack(int bnum)
             Brole[bnum].Acted = 1;
             SetAnimationPosition(AttAreaType, step, range, SelectAimMode);
             AttackAction(bnum, i, mnum, level);
+            if (specialAbilityCancelled)
+            {
+                specialAbilityCancelled = false;
+                continue;
+            }
             break;
         }
     }
@@ -6041,6 +6046,7 @@ void TSpecialAbility::SA_31(int bnum, int mnum, int level)
         if (res < 0)
         {
             Brole[bnum].Acted = 0;
+            specialAbilityCancelled = true;
             return;
         }
         Rrole[Brole[bnum].rnum].Magic[0] = mnumarray[res];
